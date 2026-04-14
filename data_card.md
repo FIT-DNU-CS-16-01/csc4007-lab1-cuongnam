@@ -465,4 +465,4 @@ Based on: Maas et al. (2011) "Learning Word Vectors for Sentiment Analysis"
 
 **End of Data Card v1.0**
 
-*For questions or updates, please contact the lab instructor or dataset authors.*
+
