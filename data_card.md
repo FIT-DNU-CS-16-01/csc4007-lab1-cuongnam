@@ -235,11 +235,11 @@ Mỗi instance chứa:
 
 | # | ID | Nhãn | Prob Cleanlab | Đoạn Text | Kết Luận Thủ Công | Giải Thích |
 |---|----|------|---|---|---|---|
-| 1 | 11668 | 0 ❌ | 0.0015 | *"this is a great movie. I love the series on tv... It's a great movie!"* | 🔴 **CHÍNH XÁC → 1 (SỮA)** | 99.85% sentimen tích cực. Nhãn rõ ràng sai. |
-| 2 | 22259 | 1 ❌ | 0.0019 | *"This flick is sterling example... bad acting, bad direction... extremely bad... How dumb is that?"* | 🔴 **CHÍNH XÁC → 0 (SỮA)** | 99.81% tông tiêu cực. Nên là lớp tiêu cực. |
-| 3 | 22257 | 1 | 0.0026 | *"low-budget... lots of bad... cheap... terrible... sleazy... weathered look... boring"* | 🟡 **MỜ HỌ (GIỮ)** | Mix từ tiêu cực nhưng có ngữ cảnh (cốt truyện có thể chấp nhận). ~70% chắc nên là 0. |
-| 4 | 31245 | 0 ❌ | 0.0110 | *"powerful dramatic performance... cool... sleazy... Tough... almost as good... terrific"* | 🔴 **CHÍNH XÁC → 1 (SỮA)** | 98.9% tính từ tích cực. Nhãn bị đảo. |
-| 5 | 23255 | 1 ❌ | 0.0129 | *"most pathetic attempt... awful movie... acting terrible... worst... slasher film into awful horror"* | 🟡 **MỜ HỌ (GIỮ)** | Hầu hết tiêu cực nhưng có lý do hợp lệ. ~50-50 không chắc. |
+| 1 | 11668 | 0 ❌ | 0.0015 | *"this is a great movie. I love the series on tv... It's a great movie!"* | 🔴 **CHÍNH XÁC → 1 (SỬA)** | 99.85% sentimen tích cực. Nhãn rõ ràng sai. |
+| 2 | 22259 | 1 ❌ | 0.0019 | *"This flick is sterling example... bad acting, bad direction... extremely bad... How dumb is that?"* | 🔴 **CHÍNH XÁC → 0 (SỬA)** | 99.81% tông tiêu cực. Nên là lớp tiêu cực. |
+| 3 | 22257 | 1 | 0.0026 | *"low-budget... lots of bad... cheap... terrible... sleazy... weathered look... boring"* | 🟡 **GIỮ** | Mix từ tiêu cực nhưng có ngữ cảnh (cốt truyện có thể chấp nhận). ~70% chắc nên là 0. |
+| 4 | 31245 | 0 ❌ | 0.0110 | *"powerful dramatic performance... cool... sleazy... Tough... almost as good... terrific"* | 🔴 **CHÍNH XÁC → 1 (SỬA)** | 98.9% tính từ tích cực. Nhãn bị đảo. |
+| 5 | 23255 | 1 ❌ | 0.0129 | *"most pathetic attempt... awful movie... acting terrible... worst... slasher film into awful horror"* | 🟡 **GIỮ** | Hầu hết tiêu cực nhưng có lý do hợp lệ. ~50-50 không chắc. |
 
 **Tóm Tắt Reviews:**
 - ✅ **Sửa Nhãn Chắc Chắn:** 3 mẫu (IDs: 11668, 22259, 31245)
