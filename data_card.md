@@ -103,285 +103,285 @@
 
 ---
 
-# 📋 **MODULE 3 — ANSWER: 15 THEMES**
+# 📋 **MODULE 3 — TRẢ LỜI: 15 CHỦ ĐỀ**
 
-## **1. Dataset Summary**
+## **1. Tóm Tắt Dataset**
 
-**Formal Name:** IMDB Movie Review Dataset (Lab Preprocessed v1.0)
+**Tên Chính Thức:** IMDB Movie Review Dataset (Đã Xử Lý trong Lab v1.0)
 
-**Short Description (≤200 words):**
+**Mô Tả Ngắn (≤200 từ):**
 
-This is a **preprocessed version of the benchmark IMDB movie review dataset** (Maas et al., 2011) with **50,000 reviews** split into train (40k), validation (5k), and test (5k) sets. Each review is labeled binary sentiment: **positive (≥7/10 score) or negative (≤4/10 score)**; neutral reviews excluded. The dataset is **perfectly class-balanced** (25k positive, 25k negative) and uses **disjoint movie sets** between train/test to reduce model leakage.
+Đây là **phiên bản đã xử lý của dataset benchmark IMDB phổ biến** (Maas et al., 2011) với **50,000 đánh giá** chia thành train (40k), validation (5k), và test (5k). Mỗi đánh giá được gắn nhãn sentimen nhị phân: **tích cực (≥7/10 điểm) hoặc tiêu cực (≤4/10 điểm)**; các đánh giá trung lập bị loại trừ. Dataset **hoàn toàn cân bằng** (25k tích cực, 25k tiêu cực) và sử dụng **tập phim riêng biệt** giữa train/test để giảm leakage.
 
-**Preprocessing performed in Lab:**
-- ✅ Removed 100% of HTML tags (29,202 → 0 occurrences)
-- ✅ Applied standard text cleaning (whitespace normalization)
-- ❌ **NOT deduped** (832 duplicates remain at 1.664%)
-- ⚠️ **GE validation: FAIL** (1 expectation failed: 6 outliers >10k chars)
-- ⚠️ **Cleanlab found ~1,000 suspected label issues (2.0%)**
+**Xử lý trong Lab:**
+- ✅ Loại bỏ 100% HTML tags (29,202 → 0 lần xuất hiện)
+- ✅ Áp dụng text cleaning chuẩn (chuẩn hóa khoảng trắng)
+- ❌ **CHƯA loại bỏ bản sao** (832 duplicates còn lại 1.664%)
+- ⚠️ **GE validation: FAIL** (1 expectation không vượt qua: 6 outliers >10k ký tự)
+- ⚠️ **Cleanlab tìm thấy ~1,000 vấn đề nhãn (2.0%)**
 
-**Use Case:** Sentiment classification benchmarking, text representation learning, sentiment analysis model evaluation.
+**Trường Hợp Sử Dụng:** Phân loại sentimen benchmark, học biểu diễn văn bản, đánh giá mô hình phân tích sentimen.
 
-**Limitations:** Artificial binary labels (no "neutral"), potential label noise (2%), duplicate reviews risk inflating test metrics.
-
----
-
-## **2. Motivation & Provenance**
-
-### Original Dataset Context (Maas et al., 2011)
-- **Created by:** Stanford University NLP group
-- **Motivation:** Need for robust, large-scale sentiment classification benchmark
-- **Source:** IMDB (movie reviews & ratings)
-- **Why useful:** Solves problems with prior sentiment datasets (small size, natural imbalance, leakage)
-
-### Lab Modifications (v1.0 - 2026-04-12)
-- **Preprocessing:** HTML removal, text cleaning
-- **Validation:** GE + Cleanlab auditing added
-- **Motivation:** CSC4007 NLP Lab assignment - teach data auditing practices
-- **Key Addition:** Manual review of 5 Cleanlab-flagged samples + full audit trail
+**Hạn Chế:** Nhãn nhị phân nhân tạo (không có "trung lập"), tiềm ẩn mất mát nhãn (2%), bản sao có thể làm tăng chỉ số test.
 
 ---
 
-## **3. Dataset Snapshot**
+## **2. Động Lực & Nguồn Gốc**
 
-| Metric | Value |
-|--------|-------|
-| **Total Instances** | 50,000 reviews |
-| **Labeled Classes** | 2 (binary: negative=0, positive=1) |
-| **Class Distribution** | Perfect balance (25,000 each) |
+### Bối Cảnh Dataset Gốc (Maas et al., 2011)
+- **Tạo bởi:** Nhóm NLP của Stanford University
+- **Động Lực:** Cần một benchmark phân loại sentimen quy mô lớn, mạnh mẽ
+- **Nguồn:** IMDB (các đánh giá phim & xếp hạng)
+- **Tại Sao Hữu Ích:** Giải quyết vấn đề với các dataset sentimen trước (quy mô nhỏ, mất cân bằng, leakage)
+
+### Chỉnh Sửa trong Lab (v1.0 - 2026-04-12)
+- **Xử lý Trước:** Loại bỏ HTML, làm sạch văn bản
+- **Xác Thực:** Thêm GE + Cleanlab auditing
+- **Động Lực:** Bài tập Lab CSC4007 NLP - dạy thực hành kiểm toán dữ liệu
+- **Bổ Sung Chính:** Review thủ công 5 mẫu được Cleanlab gắn cờ + toàn bộ audit trail
+
+---
+
+## **3. Ảnh Chụp Nhanh Dataset**
+
+| Chỉ Số | Giá Trị |
+|--------|--------|
+| **Tổng Số Instances** | 50,000 đánh giá |
+| **Các Lớp Nhãn** | 2 (nhị phân: tiêu cực=0, tích cực=1) |
+| **Phân Bố Lớp** | Cân bằng hoàn hảo (25,000 mỗi lớp) |
 | **Train / Val / Test Split** | 40,000 / 5,000 / 5,000 (80-10-10) |
-| **Average Text Length** | 954 characters (median) |
-| **Min / Max Text Length** | 32 / 13,593 characters |
-| **95th Percentile Length** | 3,328 characters |
-| **Duplicate Reviews (Exact)** | 832 reviews (1.664%) |
-| **Near-Duplicate Pairs** | 0 (in sample checked) |
-| **HTML Tag Occurrences** | 0 (after preprocessing) |
-| **HTML Entities Remaining** | 11 samples (0.022%) - e.g., `&quot;`, `&amp;` |
-| **Generation Date** | 2026-04-12 |
+| **Độ Dài Văn Bản Trung Bình** | 954 ký tự (trung vị) |
+| **Min / Max Độ Dài Văn Bản** | 32 / 13,593 ký tự |
+| **Phân Vị 95** | 3,328 ký tự |
+| **Đánh Giá Bản Sao (Chính Xác)** | 832 đánh giá (1.664%) |
+| **Cặp Bản Sao Gần** | 0 (trong mẫu kiểm tra) |
+| **Lần Xuất Hiện HTML Tag** | 0 (sau xử lý) |
+| **HTML Entities Còn Lại** | 11 mẫu (0.022%) - vd: `&quot;`, `&amp;` |
+| **Ngày Tạo** | 2026-04-12 |
 
 ---
 
-## **4. Data Fields & Schema**
+## **4. Các Field Dữ Liệu & Lược Đồ**
 
-Each instance contains:
+Mỗi instance chứa:
 
-| Field | Type | Description | Example |
-|-------|------|-------------|---------|
-| **id** | Integer | Unique review ID | 11668 |
-| **text** | String | Movie review content (1-13.5k chars) | "this is a great movie. I love..." |
-| **label** | Binary {0,1} | Sentiment label (GE-validated) | 1 = positive |
-| **len_chars** | Integer | Character count of text | 954 |
+| Field | Kiểu | Mô Tả | Ví Dụ |
+|-------|------|-------|-------|
+| **id** | Integer | ID đánh giá duy nhất | 11668 |
+| **text** | String | Nội dung đánh giá phim (1-13.5k ký tự) | "this is a great movie. I love..." |
+| **label** | Binary {0,1} | Nhãn sentimen (xác thực GE) | 1 = tích cực |
+| **len_chars** | Integer | Số lượng ký tự của văn bản | 954 |
 
 ---
 
-## **5. Validation Types (Great Expectations)**
+## **5. Loại Xác Thực (Great Expectations)**
 
-### **GE Validation Summary**
-- **Overall Status:** ❌ **FAIL** (5 of 6 expectations passed)
-- **Success Rate:** 83.33%
+### **Tóm Tắt GE Validation**
+- **Trạng Thái Tổng Thể:** ❌ **FAIL** (5 trong 6 expectations vượt qua)
+- **Tỷ Lệ Thành Công:** 83.33%
 
-### **Detailed Results**
+### **Kết Quả Chi Tiết**
 
-| # | Expectation | Status | Result | Issue |
-|----|-------------|--------|--------|-------|
+| # | Expectation | Trạng Thái | Kết Quả | Vấn Đề |
+|----|-------------|-----------|--------|---------|
 | 1 | `expect_column_values_to_not_be_null` (text) | ✅ PASS | 0 nulls | — |
 | 2 | `expect_column_values_to_not_be_null` (label) | ✅ PASS | 0 nulls | — |
-| 3 | `expect_column_values_to_be_in_set` (label ∈ {0,1}) | ✅ PASS | 100% valid | — |
+| 3 | `expect_column_values_to_be_in_set` (label ∈ {0,1}) | ✅ PASS | 100% hợp lệ | — |
 | 4 | `expect_column_values_to_not_be_null` (id) | ✅ PASS | 0 nulls | — |
-| 5 | `expect_column_values_to_be_unique` (id) | ✅ PASS | 50k unique | — |
-| 6 | `expect_column_values_to_be_between` (len_chars ∈ [1, 10000]) | ❌ **FAIL** | **6 violations** | 6 outliers >10k chars |
+| 5 | `expect_column_values_to_be_unique` (id) | ✅ PASS | 50k duy nhất | — |
+| 6 | `expect_column_values_to_be_between` (len_chars ∈ [1, 10000]) | ❌ **FAIL** | **6 vi phạm** | 6 outliers >10k ký tự |
 
-### **GE Fail Root Cause & Action Plan**
+### **Nguyên Nhân GE FAIL & Kế Hoạch Hành Động**
 
-**Problem:** 6 reviews exceed 10,000 character limit:
-- Values: 13,593 / 12,710 / 12,515 / 11,975 / 10,254 / 10,121 chars
-- Indices: 13756, 16948, 22551, 41250, 41512, 46132
+**Vấn Đề:** 6 đánh giá vượt quá giới hạn 10,000 ký tự:
+- Giá trị: 13,593 / 12,710 / 12,515 / 11,975 / 10,254 / 10,121 ký tự
+- Chỉ số: 13756, 16948, 22551, 41250, 41512, 46132
 
-**Why this matters:**
-- Most BERT-based models use 512 token max → texts >10k chars (~2,700 tokens) will be truncated
-- Outliers may be scraped data, scripts, or spam → not representative
-- Training on 13.5k chars but inference on capped 10k → behavior mismatch
+**Tại Sao Điều Này Quan Trọng:**
+- Hầu hết mô hình BERT sử dụng max 512 tokens → văn bản >10k ký tự (~2,700 tokens) sẽ bị cắt
+- Outliers có thể là dữ liệu scraped, script, hoặc spam → không đại diện
+- Training trên 13.5k ký tự nhưng inference giới hạn 10k → hành vi không khớp
 
-**Remediation Options:**
-- **Option A (Recommended):** Truncate all texts to max 10,000 chars (loses 0.012% data)
-- **Option B:** Remove 6 outliers entirely (minimal data loss)
-- **Option C:** Update expectation to max 13,600 (if verified as legitimate reviews)
+**Các Lựa Chọn Xử Lý:**
+- **Tùy Chọn A (Khuyến Nghị):** Cắt tất cả văn bản xuống tối đa 10,000 ký tự (mất 0.012% dữ liệu)
+- **Tùy Chọn B:** Loại bỏ 6 outliers hoàn toàn (mất dữ liệu tối thiểu)
+- **Tùy Chọn C:** Cập nhật expectation thành tối đa 13,600 (nếu xác minh đây là đánh giá hợp lệ)
 
-**Current Action:** **PROCEED with Option A** (truncation in preprocessing) → re-run GE for 100% pass
-
----
-
-## **6. Annotations & Labeling Quality**
-
-### **Labeling Method**
-- **Label Source:** IMDB user ratings (5-star scale: 1-10)
-- **Label Mapping:** 
-  - Negative (0): Score ≤ 4/10
-  - Positive (1): Score ≥ 7/10
-  - Neutral reviews (5-6/10): **Excluded from dataset**
-- **Labeling Type:** Algorithmic (thresholded IMDB ratings), NOT manual annotation
-
-### **Cleanlab Label Quality Analysis**
-
-**Summary Stats:**
-- **Total Reviews Analyzed:** 50,000
-- **Suspected Label Issues:** 1,000 (2.0%)
-- **Top-k Exported:** 200 (highest-confidence issues)
-- **Tool Used:** Cleanlab v2.x (confident learning method)
+**Hành Động Hiện Tại:** **TIẾP TỤC với Tùy Chọn A** (cắt trong preprocessing) → chạy lại GE để 100% vượt qua
 
 ---
 
-### **Manual Review: 5 Flagged Samples**
+## **6. Chất Lượng Chú Thích & Nhãn**
 
-| # | ID | Label | Cleanlab Prob | Text Snippet | Manual Decision | Reasoning |
-|---|----|-------|---------------|------------------|-----------------|-----------|
-| 1 | 11668 | 0 ❌ | 0.0015 | *"this is a great movie. I love the series on tv... It's a great movie!"* | 🔴 **CORRECT → 1 (FIX)** | 99.85% positive sentiment. Label clearly wrong. |
-| 2 | 22259 | 1 ❌ | 0.0019 | *"This flick is sterling example... bad acting, bad direction... extremely bad... How dumb is that?"* | 🔴 **CORRECT → 0 (FIX)** | 99.81% negative tone. Should be negative class. |
-| 3 | 22257 | 1 | 0.0026 | *"low-budget... lots of bad... cheap... terrible... sleazy... weathered look... boring"* | 🟡 **AMBIGUOUS (KEEP)** | Mix of negative words but some context (plot acceptable). ~70% certain should be 0. |
-| 4 | 31245 | 0 ❌ | 0.0110 | *"powerful dramatic performance... cool... sleazy... Tough... almost as good... terrific"* | 🔴 **CORRECT → 1 (FIX)** | 98.9% positive adjectives. Label is reversed. |
-| 5 | 23255 | 1 ❌ | 0.0129 | *"most pathetic attempt... awful movie... acting terrible... worst... slasher film into awful horror"* | 🟡 **AMBIGUOUS (KEEP)** | Mostly negative but some valid reasoning. ~50-50 uncertain. |
+### **Phương Pháp Gắn Nhãn**
+- **Nguồn Nhãn:** Xếp hạng người dùng IMDB (thang 5 sao: 1-10)
+- **Ánh Xạ Nhãn:** 
+  - Tiêu cực (0): Điểm ≤ 4/10
+  - Tích cực (1): Điểm ≥ 7/10
+  - Đánh giá trung lập (5-6/10): **Bị loại khỏi dataset**
+- **Loại Gắn Nhãn:** Thuật toán (IMDB ratings được ngưỡng hóa), KHÔNG phải ghi chú thủ công
 
-**Summary of Reviews:**
-- ✅ **Definite Label Fixes:** 3 samples (IDs: 11668, 22259, 31245)
-- 🟡 **Ambiguous:**: 2 samples (IDs: 22257, 23255)
-- **Estimated Label Error Rate (from top-5):** **60% error rate in top-5** → Cleanlab detector working well
+### **Phân Tích Chất Lượng Nhãn Cleanlab**
 
-**Recommendation:** 
-- 🔴 **Action 1:** Correct 3 samples manually (11668→1, 22259→0, 31245→1)
-- 🔴 **Action 2:** Review all 200 Cleanlab exports with priority on prob < 0.05
-- 🟡 **Action 3:** Consider 2-stage training: train on high-confidence, then fine-tune on ambiguous
+**Thống Kê Tóm Tắt:**
+- **Tổng Đánh Giá Phân Tích:** 50,000
+- **Vấn Đề Nhãn Nghi Vấn:** 1,000 (2.0%)
+- **Top-k Xuất Khẩu:** 200 (các vấn đề có độ tin cậy cao nhất)
+- **Công Cụ Sử Dụng:** Cleanlab v2.x (phương pháp học tự tin)
 
 ---
 
-## **7. Data Transformations & Preprocessing**
+### **Review Thủ Công: 5 Mẫu Được Gắn Cờ**
 
-### **Transformation Pipeline**
+| # | ID | Nhãn | Prob Cleanlab | Đoạn Text | Kết Luận Thủ Công | Giải Thích |
+|---|----|------|---|---|---|---|
+| 1 | 11668 | 0 ❌ | 0.0015 | *"this is a great movie. I love the series on tv... It's a great movie!"* | 🔴 **CHÍNH XÁC → 1 (SỮA)** | 99.85% sentimen tích cực. Nhãn rõ ràng sai. |
+| 2 | 22259 | 1 ❌ | 0.0019 | *"This flick is sterling example... bad acting, bad direction... extremely bad... How dumb is that?"* | 🔴 **CHÍNH XÁC → 0 (SỮA)** | 99.81% tông tiêu cực. Nên là lớp tiêu cực. |
+| 3 | 22257 | 1 | 0.0026 | *"low-budget... lots of bad... cheap... terrible... sleazy... weathered look... boring"* | 🟡 **MỜ HỌ (GIỮ)** | Mix từ tiêu cực nhưng có ngữ cảnh (cốt truyện có thể chấp nhận). ~70% chắc nên là 0. |
+| 4 | 31245 | 0 ❌ | 0.0110 | *"powerful dramatic performance... cool... sleazy... Tough... almost as good... terrific"* | 🔴 **CHÍNH XÁC → 1 (SỮA)** | 98.9% tính từ tích cực. Nhãn bị đảo. |
+| 5 | 23255 | 1 ❌ | 0.0129 | *"most pathetic attempt... awful movie... acting terrible... worst... slasher film into awful horror"* | 🟡 **MỜ HỌ (GIỮ)** | Hầu hết tiêu cực nhưng có lý do hợp lệ. ~50-50 không chắc. |
 
-#### **Step 1: HTML Tag Removal**
-- **Before:** 29,202 / 50,000 samples contain HTML tags (58.44%)
-  - `<br/>` tags: 29,200 samples
-  - Other tags: variable (e.g., `<b>`, `<i>`)
-- **After:** 0 / 50,000 (100% removal ✅)
-- **Method:** BeautifulSoup / regex-based HTML cleaning
-- **Impact:** Cleanest baseline for NLP model input
+**Tóm Tắt Reviews:**
+- ✅ **Sửa Nhãn Chắc Chắn:** 3 mẫu (IDs: 11668, 22259, 31245)
+- 🟡 **Mơ Hồ:** 2 mẫu (IDs: 22257, 23255)
+- **Tỷ Lệ Lỗi Nhãn Ước Tính (từ top-5):** **Lỗi 60% trong top-5** → detector Cleanlab hoạt động tốt
 
-#### **Step 2: Text Normalization**
-- **Whitespace Collapse:** Single spaces between words
-- **Special Char Handling:** Preserve punctuation for sentiment signals
-- **Status:** ✅ Applied
+**Khuyến Nghị:** 
+- 🔴 **Hành Động 1:** Sửa 3 mẫu thủ công (11668→1, 22259→0, 31245→1)
+- 🔴 **Hành Động 2:** Review 200 exports Cleanlab với ưu tiên prob < 0.05
+- 🟡 **Hành Động 3:** Cân nhắc training 2 giai đoạn: train trên high-confidence, fine-tune trên ambiguous
 
-#### **Step 3: Train/Test Split (Data Leakage Prevention)**
-- **Before:** Original 50k unsplit
-- **After:** 
+---
+
+## **7. Biến Đổi Dữ Liệu & Xử Lý Trước**
+
+### **Pipeline Biến Đổi**
+
+#### **Bước 1: Loại Bỏ HTML Tag**
+- **Trước:** 29,202 / 50,000 mẫu chứa HTML tags (58.44%)
+  - Tags `<br/>`: 29,200 mẫu
+  - Tags khác: biến thiên (vd: `<b>`, `<i>`)
+- **Sau:** 0 / 50,000 (loại bỏ 100% ✅)
+- **Phương Pháp:** Làm sạch HTML dựa vào BeautifulSoup / regex
+- **Ảnh Hưởng:** Cơ sở sạch nhất cho input mô hình NLP
+
+#### **Bước 2: Chuẩn Hóa Văn Bản**
+- **Thu Gọn Khoảng Trắng:** Single spaces giữa các từ
+- **Xử Lý Ký Tự Đặc Biệt:** Giữ punctuation cho tín hiệu sentimen
+- **Trạng Thái:** ✅ Đã Áp Dụng
+
+#### **Bước 3: Train/Test Split (Phòng Ngừa Data Leakage)**
+- **Trước:** 50k unsplit gốc
+- **Sau:** 
   - Train: 40,000 (80%)
   - Val: 5,000 (10%)
   - Test: 5,000 (10%)
-- **Important:** ✅ Dataset already uses **disjoint movie sets** between train/test (per original paper)
-- **Verified:** TF-IDF vocab_size identical (20k) when fit on train-only vs all data → no leakage detected in current splits
+- **Quan Trọng:** ✅ Dataset đã sử dụng **tập phim riêng biệt** giữa train/test (theo paper gốc)
+- **Xác Minh:** vocab_size TF-IDF giống nhau (20k) khi fit trên train-only vs all data → không phát hiện leakage trong splits hiện tại
 
-#### **Step 4: Deduplication Status**
-- **Exact Duplicates Found:** 832 (1.664%)
-- **Action Taken:** ❌ NOT removed (left for student analysis)
-- **Risk:** ⚠️ If duplicates exist in both train AND test → inflates test performance
-- **Recommended:** Remove duplicates OR use stratified dedup within train/test
+#### **Bước 4: Trạng Thái Loại Bỏ Bản Sao**
+- **Đã Tìm Duplicates Chính Xác:** 832 (1.664%)
+- **Hành Động Đã Thực Hiện:** ❌ CHƯA loại bỏ (để học sinh phân tích)
+- **Rủi Ro:** ⚠️ Nếu bản sao tồn tại ở cả train VÀ test → làm tăng hiệu suất test
+- **Khuyến Nghị:** Loại bỏ bản sao HOẶC sử dụng stratified dedup trong train/test
 
-### **Stats: Before vs After Preprocessing**
+### **Thống Kê: Trước vs Sau Xử Lý**
 
-| Metric | BEFORE | AFTER | Change |
-|--------|--------|-------|--------|
+| Chỉ Số | TRƯỚC | SAU | Thay Đổi |
+|--------|--------|------|----------|
 | **HTML `<br>` tags** | 29,200 | 0 | -100% ✅ |
-| **Any HTML tags** | 29,202 | 0 | -100% ✅ |
-| **HTML entities** | 11 | 11 | 0 (minor, kept) |
-| **Exact duplicates** | 824 | 832 | +8 (cleaning effect) |
-| **Duplicate ratio** | 1.648% | 1.664% | +0.016% |
-| **Median text length** | 970 | 954 | -16 chars (cleanup) |
-| **Max text length** | 13,704 | 13,593 | -111 chars (trim) |
-| **Label distribution** | 25k/25k | 25k/25k | 0 (stable) |
+| **Bất Kỳ HTML tag** | 29,202 | 0 | -100% ✅ |
+| **HTML entities** | 11 | 11 | 0 (nhỏ, giữ lại) |
+| **Duplicates chính xác** | 824 | 832 | +8 (hiệu ứng làm sạch) |
+| **Tỷ Lệ Duplicate** | 1.648% | 1.664% | +0.016% |
+| **Độ Dài Median** | 970 | 954 | -16 ký tự (làm sạch) |
+| **Độ Dài Max** | 13,704 | 13,593 | -111 ký tự (cắt) |
+| **Phân Bố Nhãn** | 25k/25k | 25k/25k | 0 (ổn định) |
 
 ---
 
-## **8. Known Limitations & Bias**
+## **8. Hạn Chế Đã Biết & Bias**
 
-### **A. Artificial Binary Labeling**
-- **Issue:** Only scores ≤4 (negative) and ≥7 (positive); neutral 5-6 excluded
-- **Impact:** Dataset is **not a natural distribution** of opinions
-  - ~16% of original IMDB reviews are neutral → artificially removed
-  - Models trained here may struggle with genuinely mixed sentiment
-- **Risk:** "Shortcut" learning (model just learns to distinguish extreme views)
+### **A. Gắn Nhãn Nhị Phân Nhân Tạo**
+- **Vấn Đề:** Chỉ điểm ≤4 (tiêu cực) và ≥7 (tích cực); 5-6 bị loại trừ
+- **Ảnh Hưởng:** Dataset **KHÔNG phải phân bố tự nhiên** của ý kiến
+  - ~16% đánh giá IMDB gốc trung lập → bị loại nhân tạo
+  - Mô hình training ở đây có thể gặp khó khăn với sentimen thực sự hỗn hợp
+- **Rủi Ro:** "Shortcut" learning (mô hình chỉ học phân biệt các quan điểm cực đoan)
 
-### **B. Duplicate Reviews → Test Set "Leakage"**
-- **Issue:** 832 exact duplicates (1.664%)
-- **Risk:** If same review appears in train AND test → test metrics inflated
-- **Current Check:** ✅ Original paper used disjoint movies (reduces leakage)
-- **Recommendation:** Verify no duplicates exist in test set specifically
+### **B. Bản Sao Đánh Giá → "Leakage" Test Set**
+- **Vấn Đề:** 832 duplicates chính xác (1.664%)
+- **Rủi Ro:** Nếu đánh giá giống nhau xuất hiện ở cả train VÀ test → chỉ số test bị phóng đại
+- **Kiểm Tra Hiện Tại:** ✅ Paper gốc sử dụng phim riêng biệt (giảm leakage)
+- **Khuyến Nghị:** Xác minh không có duplicates ở test set cụ thể
 
-### **C. Label Noise (~2%)**
-- **Issue:** Cleanlab detected ~1,000 likely mislabeled reviews (2%)
-- **Impact:** Noisy labels → harder generalization, lower apparent ceiling
-- **Mitigation:** Manual review + correction of top-200 high-confidence issues
+### **C. Mất Mát Nhãn (~2%)**
+- **Vấn Đề:** Cleanlab phát hiện ~1,000 đánh giá có nhãn sai (2%)
+- **Ảnh Hưởng:** Nhãn mất mát → khó generalization, ceiling rõ ràng thấp hơn
+- **Giảm Thiểu:** Review thủ công + sửa chữa top-200 high-confidence
 
-### **D. Movie/Domain Bias**
-- **Issue:** All from IMDB → specific genre, writing style, audience bias
-- **Limits:** May not generalize to Yelp, Amazon, Twitter sentiment
-- **Known from Paper:** Subset guarantee of ≤30 reviews per movie
+### **D. Bias Phim/Miền**
+- **Vấn Đề:** Toàn bộ từ IMDB → bias thể loại cụ thể, phong cách viết, khán giả
+- **Giới Hạn:** Có thể không generalize đến Yelp, Amazon, Twitter sentiment
+- **Đã Biết từ Paper:** Đảm bảo 30 đánh giá tối đa trên mỗi phim
 
-### **E. Text Length Outliers**
-- **Issue:** 6 samples >10k chars (max 13.5k) vs expected ~1k
-- **Impact:** Truncation in BERT/RNN models → info loss for long reviews
-- **Mitigation:** Truncate or oversample short reviews for balance
+### **E. Outliers Độ Dài Văn Bản**
+- **Vấn Đề:** 6 mẫu >10k ký tự (max 13.5k) vs expected ~1k
+- **Ảnh Hưởng:** Cắt trong BERT/RNN models → mất thông tin cho reviews dài
+- **Giảm Thiểu:** Cắt hoặc oversample short reviews cho cân bằng
 
 ---
 
-## **9. Recommendations for Use**
+## **9. Khuyến Nghị Sử Dụng**
 
-### **✅ GOOD FOR:**
-- Sentiment classification benchmarks (binary polarity)
-- Text representation learning (word embeddings, pretrained LLMs)
+### **✅ HỢP LÝ CHO:**
+- Benchmarks phân loại sentimen (nhị phân polarity)
+- Học biểu diễn văn bản (word embeddings, pretrained LLMs)
 - Baseline comparison studies
-- Teaching datasets for NLP courses
-- Testing data augmentation techniques
+- Teaching datasets cho NLP courses
+- Testing kỹ thuật data augmentation
 
-### **❌ AVOID FOR:**
-- Multi-class sentiment (no neutral class)
-- Domain-specific transfer (only movie reviews)
-- Fine-grained aspect-based sentiment
-- Real-world production (prefer application-specific data)
-- Studies claiming to measure human opinion distribution (artificial filtering)
+### **❌ TRÁNH CHO:**
+- Sentimen multi-class (không có neutral class)
+- Transfer domain-specific (chỉ movie reviews)
+- Sentimen aspect-based chi tiết
+- Production thực tế (prefer application-specific data)
+- Các nghiên cứu tuyên bố đo phân bố ý kiến con người (filtering nhân tạo)
 
-### **🔧 IMPROVEMENTS NEEDED:**
+### **🔧 CẢI THIỆN CẦN THIẾT:**
 
-1. **CRITICAL (Do before using for benchmarking):**
-   - [ ] Fix GE validation: truncate texts to max 10,000 chars
-   - [ ] Verify duplicates: check if any duplicate pair spans train+test
+1. **CRITICAL (Làm trước khi sử dụng cho benchmarking):**
+   - [ ] Fix GE validation: cắt văn bản xuống tối đa 10,000 ký tự
+   - [ ] Xác minh duplicates: kiểm tra có bản sao nào trên train+test không
 
-2. **IMPORTANT (Do before training production model):**
-   - [ ] Correct 3 confirmed label errors (IDs: 11668→1, 22259→0, 31245→1)
-   - [ ] Review all 200 Cleanlab exports, curate top-100 to fix/remove
+2. **IMPORTANT (Làm trước training mô hình production):**
+   - [ ] Sửa 3 lỗi nhãn xác nhận (IDs: 11668→1, 22259→0, 31245→1)
+   - [ ] Review 200 Cleanlab exports, curate top-100 để sửa/loại bỏ
 
-3. **OPTIONAL (Nice-to-have for research):**
-   - [ ] Soft deduplication: weight duplicate samples lower
-   - [ ] Neutral class: add 5-6 scored reviews as "undecided" class
-   - [ ] Per-movie stratification: ensure all movies present in train
-
----
-
-## **10. Version & Update History**
-
-| Version | Date       | Author | Changes |
-|---------|------------|--------|---------|
-| v1.0    | 2026-04-12 | CSC4007 Student | Initial data card: preprocessing audit, GE validation, Cleanlab analysis, manual review of 5 samples |
+3. **OPTIONAL (Nice-to-have cho nghiên cứu):**
+   - [ ] Soft deduplication: weight mẫu duplicate thấp hơn
+   - [ ] Neutral class: thêm reviews 5-6 scored như "undecided" class
+   - [ ] Per-movie stratification: đảm bảo tất cả phim có trong train
 
 ---
 
-## **11. Terms of Use & Attribution**
+## **10. Lịch Sử Phiên Bản & Cập Nhật**
 
-### **License**
-- **Original Dataset (Maas et al., 2011):** CC0 / Public Domain / No Restrictions
-- **This Lab Version (v1.0):** Same as original (open for educational use)
+| Phiên Bản | Ngày | Tác Giả | Thay Đổi |
+|-----------|------|--------|---------|
+| v1.0 | 2026-04-12 | Sinh Viên CSC4007 | Data card ban đầu: audit preprocessing, GE validation, phân tích Cleanlab, review 5 mẫu thủ công |
 
-### **How to Cite**
+---
 
-**Original Dataset:**
+## **11. Điều Khoản Sử Dụng & Ghi Công**
+
+### **Giấy Phép**
+- **Dataset Gốc (Maas et al., 2011):** CC0 / Public Domain / Không Hạn Chế
+- **Phiên Bản Lab (v1.0):** Giống gốc (mở cho sử dụng giáo dục)
+
+### **Cách Trích Dẫn**
+
+**Dataset Gốc:**
 ```bibtex
 @InProceedings{maas-EtAl:2011:ACL-HLT2011,
   author = {Maas, Andrew L.  and  Daly, Raymond E.  and  Pham, Peter T.  and  Huang, Dan  and  Ng, Andrew Y.  and  Potts, Christopher},
@@ -396,7 +396,7 @@ Each instance contains:
 }
 ```
 
-**Lab Version v1.0:**
+**Phiên Bản Lab v1.0:**
 ```
 CSC4007 NLP Lab, Semester 2026-1. IMDB Review Dataset (Preprocessed v1.0).
 Data Card authored during lab assignment on 2026-04-12.
@@ -405,61 +405,61 @@ Based on: Maas et al. (2011) "Learning Word Vectors for Sentiment Analysis"
 
 ---
 
-## **12. Data Access & Contact**
+## **12. Truy Cập Dữ Liệu & Liên Hệ**
 
-- **Dataset Download:** http://www.andrew-maas.net/data/sentiment
+- **Tải Dataset:** http://www.andrew-maas.net/data/sentiment
 - **Paper:** https://aclanthology.org/P11-1015.pdf
-- **Lab Data (Processed):** `./outputs/splits/{train,val,test}.csv`
+- **Dữ Liệu Lab (Đã Xử Lý):** `./outputs/splits/{train,val,test}.csv`
 - **Audit Logs:** `./outputs/logs/{audit_before,audit_after,cleanlab_*}.md`
-- **Contact (Original Authors):** [amaas, rdaly, ptpham, yuze, ang, cgpotts]@stanford.edu
+- **Liên Hệ (Tác Giả Gốc):** [amaas, rdaly, ptpham, yuze, ang, cgpotts]@stanford.edu
 - **Lab Instructor:** [CSC4007 Course Staff]
 
 ---
 
 ## **13. Metadata Register**
 
-### **Verification Status**
+### **Trạng Thái Xác Minh**
 
-| Metadata | Verified | Source | Status |
-|----------|----------|--------|--------|
-| n_rows | Yes | `datacard_stats.json` | ✅ 50,000 |
-| label_dist | Yes | `datacard_stats.json` | ✅ 25k/25k balanced |
-| split_ratio | Yes | `datacard_stats.json` | ✅ 80-10-10 |
-| html_removal | Yes | `audit_before.md` vs `audit_after.md` | ✅ 29,202 → 0 |
-| duplicates | Yes | `datacard_stats.json` | ✅ 832 (1.664%) |
-| ge_results | Yes | `validation_summary.md` | ❌ FAIL (1/6) |
-| cleanlab_issues | Yes | `cleanlab_summary.md` | ⚠️ 1,000 (2.0%) |
-
----
-
-## **14. Appendix: Cleanlab Full Metadata**
-
-**Cleanlab Execution Details:**
-- **Tool:** Cleanlab v2.x (confident learning)
-- **Method:** Label error detection via out-of-sample cross-validation
-- **Dataset Size:** 50,000 reviews
-- **Output:** `cleanlab_label_issues.csv` (200 top-k most confident errors)
-- **Metrics:**
-  - Suspected issues: 1,000 (2.0% of dataset)
-  - Confidence threshold: varies (top issue has prob ~0.0014)
-  - Export limit: 200 samples
+| Metadata | Xác Minh | Nguồn | Trạng Thái |
+|----------|---------|-------|-----------|
+| n_rows | Có | `datacard_stats.json` | ✅ 50,000 |
+| label_dist | Có | `datacard_stats.json` | ✅ 25k/25k cân bằng |
+| split_ratio | Có | `datacard_stats.json` | ✅ 80-10-10 |
+| html_removal | Có | `audit_before.md` vs `audit_after.md` | ✅ 29,202 → 0 |
+| duplicates | Có | `datacard_stats.json` | ✅ 832 (1.664%) |
+| ge_results | Có | `validation_summary.md` | ❌ FAIL (1/6) |
+| cleanlab_issues | Có | `cleanlab_summary.md` | ⚠️ 1,000 (2.0%) |
 
 ---
 
-## **15. Self-Assessment Scorecard**
+## **14. Phụ Lục: Metadata Đầy Đủ Cleanlab**
 
-> *See separate file: `datacard/heuristics_scorecard.md`*
+**Chi Tiết Thực Thi Cleanlab:**
+- **Công Cụ:** Cleanlab v2.x (confident learning)
+- **Phương Pháp:** Phát hiện lỗi nhãn qua out-of-sample cross-validation
+- **Kích Thước Dataset:** 50,000 đánh giá
+- **Output:** `cleanlab_label_issues.csv` (200 top-k lỗi nghi vấn nhất)
+- **Chỉ Số:**
+  - Vấn đề nghi vấn: 1,000 (2.0% dataset)
+  - Ngưỡng tin cậy: biến đổi (issue hàng đầu có prob ~0.0014)
+  - Giới hạn xuất khẩu: 200 mẫu
 
-### **Quick Summary (1-5 scale):**
+---
 
-| Criterion | Score | Notes |
-|-----------|-------|-------|
-| **Completeness** | 4/5 | All 15 themes covered; minor gaps in per-movie stats |
-| **Accuracy** | 4/5 | All numbers verified from outputs; 1 GE fail remains unresolved |
-| **Clarity** | 5/5 | Well-structured, color-coded status, actionable recommendations |
-| **Timeliness** | 5/5 | Current as of 2026-04-12 |
-| **Actionability** | 4/5 | Clear next steps; some optional (low-priority) items |
-| **OVERALL** | **4.4/5** | Ready for lab submission; production use requires actions 1-2 from §9 |
+## **15. Thẻ Điểm Tự Đánh Giá**
+
+> *Xem file riêng: `datacard/heuristics_scorecard.md`*
+
+### **Tóm Tắt Nhanh (thang 1-5):**
+
+| Tiêu Chí | Điểm | Ghi Chú |
+|----------|------|--------|
+| **Hoàn Chỉnh** | 4/5 | 15 chủ đề được cover; gaps nhỏ ở stats/phim |
+| **Chính Xác** | 4/5 | Tất cả số verified từ outputs; 1 GE fail còn sót |
+| **Rõ Ràng** | 5/5 | Cấu trúc tốt, status color-coded, khuyến nghị actionable |
+| **Kịp Thời** | 5/5 | Hiện tại của 2026-04-12 |
+| **Hành Động** | 4/5 | Các bước tiếp theo rõ ràng; một số optional (thấp priority) |
+| **TỔNG THỂ** | **4.4/5** | Sẵn sàng submit lab; production cần actions 1-2 từ §9 |
 
 ---
 
